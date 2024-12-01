@@ -51,7 +51,22 @@ fn main() {
         total += sub;
     }
 
-    println!("Part1: Total: {}", total)
+    println!("Part1: Total: {}", total);
 
     // Part 2
+    let get_score = |number: usize| -> usize {
+        arrays
+            .1
+            .iter()
+            .filter(|x3| **x3 == number)
+            .collect::<Vec<&usize>>()
+            .len()
+            * number
+    };
+
+    let reducer = |acc: usize, e: usize| -> usize { acc + get_score(e) };
+
+    let result = arrays.0.iter().map(|x| *x).fold(0, reducer);
+
+    println!("Part2: Total: {}", result);
 }
